@@ -35,6 +35,7 @@ var Sudoku = (function(){
      */
     function Sudoku () {
         boardInit();
+        return this;
     }
 
     /**
@@ -57,8 +58,12 @@ var Sudoku = (function(){
      */
     Sudoku.prototype.clear = function(){
         boardInit();
+        return this;
     };
 
+    /**
+     * Populate the board with random values
+     */
     Sudoku.prototype.randomizeBoard = function(){
         for (var i=0; i<ROW_COUNT; i++){
             for(var j=0; j<ROW_COUNT; j++){
@@ -66,6 +71,7 @@ var Sudoku = (function(){
                 board[i][j] = rand;
             }
         }
+        return this;
     };
 
     return Sudoku;
