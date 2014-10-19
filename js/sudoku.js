@@ -1,21 +1,41 @@
 var Sudoku = (function(){
 
-    /**
-     * Private variables
-     */
-    var board = [];
+    /////////////////////
+    // Private variables
+    /////////////////////
+    var board;
     var ROW_COUNT = 9;
+
+    /////////////////////
+    // Private methods
+    /////////////////////
+
+    /**
+     * Re-initialize an empty board
+     */
+    function boardInit(){
+        board = [];
+        for(var i=0; i< ROW_COUNT; i++){
+            var row = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            board.push(row);
+        }
+    }
+
+    /**
+     * Get random value between 1 and 9
+     * @returns {number}
+     */
+    function getRandomValue(){
+        return Math.floor(Math.random()*9) + 1; //0-8 + 1
+    }
 
     /**
      * Constructor function, populates board as an empty 2D array to model sudoku board
      * @constructor
      */
     function Sudoku () {
-        for(var i=0; i< ROW_COUNT; i++){
-            board.push(new Array(0, 0, 0, 0, 0, 0, 0, 0, 0));
-        }
+        boardInit();
     }
-
 
     /**
      * Returns current state of the board as a string
@@ -30,7 +50,23 @@ var Sudoku = (function(){
             row += "\n";
         }
         return row;
-    }
+    };
+
+    /**
+     * Clear the board
+     */
+    Sudoku.prototype.clear = function(){
+        boardInit();
+    };
+
+    Sudoku.prototype.randomizeBoard = function(){
+        for (var i=0; i<ROW_COUNT; i++){
+            for(var j=0; j<ROW_COUNT; j++){
+                var rand = getRandomValue();
+                board[i][j] = rand;
+            }
+        }
+    };
 
     return Sudoku;
 })();
