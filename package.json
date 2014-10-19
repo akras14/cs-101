@@ -1,0 +1,28 @@
+{
+  "name": "sudoku",
+  "version": "0.0.0",
+  "description": "sudoku ======",
+  "main": "gulpfile.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gulp": "^3.8.8",
+    "gulp-jshint": "^1.8.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akras14/sudoku.git"
+  },
+  "keywords": [
+    "Sudoku"
+  ],
+  "author": "Alex Kras",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akras14/sudoku/issues"
+  },
+  "homepage": "https://github.com/akras14/sudoku"
+}
