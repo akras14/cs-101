@@ -32,11 +32,11 @@ char * reverse(char * str) {
         }
 
         //2. Copy every letter in the word
-        for( i = 0; i <= end - start; i++) {
+        for( i = 0; i <= end - start; i++) { //For word length
             newStr[newStringLength + i] = str[start + i];
         }
 
-        //3. Store the space
+        //3. Store the empty space
         newStringLength = newStringLength + i;
         newStr[newStringLength] = ' ';
         newStringLength++;
@@ -44,7 +44,10 @@ char * reverse(char * str) {
         //4. Move to the next word
         end = start - 2;
     }
+    
+    //Terminate the string properly
     newStr[newStringLength] = '\0';
+
     return newStr;
 }
 
