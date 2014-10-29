@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 int stringLength(char * str) {
@@ -34,24 +34,31 @@ char * reverse(char * str) {
         //2. Copy every letter in the word
         for( i = 0; i <= end - start; i++) {
             newStr[newStringLength + i] = str[start + i];
-            printf("Storing %c in %i\n", str[start + i], newStringLength + i);
         }
+
         //3. Store the space
         newStringLength = newStringLength + i;
-        printf("New string length %i \n", newStringLength);
         newStr[newStringLength] = ' ';
         newStringLength++;
-        printf("New string length %i \n", newStringLength);
-        printf("string is: %s\n\n", newStr);
 
         //4. Move to the next word
         end = start - 2;
     }
+    newStr[newStringLength] = '\0';
     return newStr;
+}
+
+void test(char * testStr) {
+    char * revStr = reverse(testStr);
+    printf("%s\n", revStr);
+    free(revStr);
 }
 
 int main()
 {
-    char str[] = "Please reverse me";
-    printf("%s\n", reverse(str));
+    test("Please reverse me");
+    test("This is just a longer test");
+    test("This is");
+    test("This");
+    test("");
 }
