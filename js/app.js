@@ -1,4 +1,4 @@
-var Sudoku = require('./sudoku');
+var Sudoku = require('./Sudoku');
 var board = new Sudoku();
 
 function show(boardName){
@@ -6,8 +6,8 @@ function show(boardName){
 }
 
 board.randomize();
-while(!board.checkCell(0,0)){
-    board.randomize();
-}
+//while(!board.checkCell(0,0)){
+//    board.randomize();
+//}
 show(board);
 console.log(board.checkCell(0,0));

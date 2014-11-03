@@ -20,7 +20,7 @@ function boardInit(){
 }
 
 /**
- * Get random value between min and max
+ * Get random value between and including min and up to but excluding max
  * @returns {number}
  */
 function getRandomValue(min, max){
