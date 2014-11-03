@@ -20,11 +20,11 @@ function boardInit(){
 }
 
 /**
- * Get random value between 1 and 9
+ * Get random value between min and max
  * @returns {number}
  */
-function getRandomValue(){
-    return Math.floor(Math.random()*9) + 1; //0-8 + 1
+function getRandomValue(min, max){
+    return Math.floor(Math.random() * (max-min)) + min;
 }
 
 /**
@@ -62,14 +62,56 @@ Sudoku.prototype.clear = function(){
 /**
  * Populate the board with random values
  */
-Sudoku.prototype.randomizeBoard = function(){
+//TODO factor out into module and test
+Sudoku.prototype.randomize = function(){
     for (var i=0; i<ROW_COUNT; i++){
+        var randomValue = [1,2,3,4,5,6,7,8,9];
         for(var j=0; j<ROW_COUNT; j++){
-            var rand = getRandomValue();
-            board[i][j] = rand;
+            var randomIndex = getRandomValue(0, randomValue.length);
+            board[i][j] = randomValue.splice(randomIndex, 1)[0];
         }
     }
     return this;
 };
+
+
+Sudoku.prototype.checkCell = function(cellRow, cellColumn){
+    var rowCount = {};
+    var columnCount = {};
+    var squareCount = {};
+
+    for(var i=0; i<ROW_COUNT; i++){
+
+        var columnValue = board[i][cellColumn];
+        var rowValue = board[cellRow][i];
+
+        var xSquare = i % 3;
+        var ySquare = Math.floor(i/3);
+        var squareValue = board[xSquare][ySquare];
+
+        if(!columnCount[columnValue]) {
+            columnCount[columnValue] = 1;
+        } else {
+            return false;
+        }
+
+        if(!rowCount[rowValue]){
+            rowCount[rowValue] = 1;
+        } else {
+            return false;
+        }
+
+        //TODO fix square check
+        if(!squareCount[squareValue]){
+            rowCount[squareValue] = 1;
+        } else {
+            return false;
+        }
+
+    }
+
+    return true;
+};
+
 
 module.exports = Sudoku;

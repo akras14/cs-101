@@ -5,10 +5,9 @@ function show(boardName){
     console.log(boardName.toString());
 }
 
+board.randomize();
+while(!board.checkCell(0,0)){
+    board.randomize();
+}
 show(board);
-board.randomizeBoard();
-show(board);
-board.clear().randomizeBoard();
-show(board);
-board.clear();
-show(board);
+console.log(board.checkCell(0,0));
