@@ -4,6 +4,7 @@ var source = require('vinyl-source-stream');
 var streamify = require('gulp-streamify');
 var browserify = require('browserify');
 var uglify = require('gulp-uglify');
+var mocha = require('gulp-mocha');
 
 gulp.task('default', function() {
     // place code for your default task here
@@ -36,3 +37,10 @@ gulp.task('scripts-prod', function() {
         .pipe(streamify(uglify()))
         .pipe(gulp.dest('./build'))
 });
+
+gulp.task('mocha', function () {
+    return gulp.src('./test/**/*.test.js', {read: false})
+        .pipe(mocha({reporter: 'spec'}));
+});
+
+gulp.task('test', ['lint', 'mocha']);
