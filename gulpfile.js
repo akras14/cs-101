@@ -1,6 +1,9 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
-var browserify = require('gulp-browserify');
+var source = require('vinyl-source-stream');
+var streamify = require('gulp-streamify');
+var browserify = require('browserify');
+var uglify = require('gulp-uglify');
 
 gulp.task('default', function() {
     // place code for your default task here
@@ -12,16 +15,24 @@ gulp.task('lint', function() {
         .pipe(jshint.reporter('default'));
 });
 
-gulp.task('compile', function() {
-    gulp.src('js/app.js')
-        .pipe(browserify({
-            insertGlobals : true,
-            debug : true
-        }))
-        .pipe(gulp.dest('./build/js'))
-});
-
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch('js/**/*.js', ['lint', 'compile']);
+    gulp.watch('js/**/*.js', ['lint', 'scripts']);
+});
+
+gulp.task('scripts', function() {
+    var bundleStream = browserify('./js/app.js', { entry: true, debug: true }).bundle();
+
+    bundleStream
+        .pipe(source('./js/app.js'))
+        .pipe(gulp.dest('./build'))
+});
+
+gulp.task('scripts-prod', function() {
+    var bundleStream = browserify('./js/app.js').bundle();
+
+    bundleStream
+        .pipe(source('./js/app.js'))
+        .pipe(streamify(uglify()))
+        .pipe(gulp.dest('./build'))
 });
