@@ -9,13 +9,18 @@ var ROW_COUNT = 9;
 /////////////////////
 
 /**
- * Re-initialize an empty board
+ * Initialize an empty board or pre-populate board from template
+ * @param boardTemplate {Array} optional
  */
-function boardInit(){
-    board = [];
-    for(var i=0; i< ROW_COUNT; i++){
-        var row = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
-        board.push(row);
+function boardInit(boardTemplate){
+    if(!boardTemplate){
+        board = [];
+        for(var i=0; i< ROW_COUNT; i++){
+            var row = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
+            board.push(row);
+        }
+    } else {
+        board = boardTemplate;
     }
 }
 

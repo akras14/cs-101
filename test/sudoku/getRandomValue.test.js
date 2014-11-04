@@ -21,5 +21,7 @@ describe('getRandomValue', function(){
         expect(getRandomValue(0,9)).to.equal(0); //0.1
         expect(getRandomValue(0,9)).to.equal(0); //0.0
         expect(getRandomValue(0,9)).to.not.equal(0); //undefined
+
+        Math.random.restore();
     });
 });
