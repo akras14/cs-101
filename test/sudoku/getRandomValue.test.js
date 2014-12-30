@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 var rewire = require("rewire");
 var sinon = require('sinon');
-var Sudoku = rewire('../../js/Sudoku');
+var Sudoku = rewire('../../js/sudoku');
 var getRandomValue = Sudoku.__get__('getRandomValue');
 
 describe('getRandomValue', function(){
