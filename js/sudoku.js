@@ -2,7 +2,7 @@
 // Private variables
 /////////////////////
 var board;
-var ROW_COUNT = 9;
+var SUDOKU_SIDE = 9;
 
 /////////////////////
 // Private methods
@@ -15,7 +15,7 @@ var ROW_COUNT = 9;
 function boardInit(boardTemplate){
     if(!boardTemplate){
         board = [];
-        for(var i=0; i< ROW_COUNT; i++){
+        for(var i=0; i< SUDOKU_SIDE; i++){
             var row = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
             board.push(row);
         }
@@ -36,8 +36,8 @@ function getRandomValue(min, max){
  * Constructor function, populates board as an empty 2D array to model sudoku board
  * @constructor
  */
-function Sudoku () {
-    boardInit();
+function Sudoku (boardTemplate) {
+    boardInit(boardTemplate);
     return this;
 }
 
@@ -47,8 +47,8 @@ function Sudoku () {
  */
 Sudoku.prototype.toString = function(){
     var row = "";
-    for (var i=0; i < ROW_COUNT; i++){
-        for(var j=0; j < ROW_COUNT; j++){
+    for (var i=0; i < SUDOKU_SIDE; i++){
+        for(var j=0; j < SUDOKU_SIDE; j++){
             row += board[i][j] + " ";
         }
         row += "\n";
@@ -69,9 +69,9 @@ Sudoku.prototype.clear = function(){
  */
 //TODO factor out into module and test
 Sudoku.prototype.randomize = function(){
-    for (var i=0; i<ROW_COUNT; i++){
+    for (var i=0; i<SUDOKU_SIDE; i++){
         var randomValue = [1,2,3,4,5,6,7,8,9];
-        for(var j=0; j<ROW_COUNT; j++){
+        for(var j=0; j<SUDOKU_SIDE; j++){
             var randomIndex = getRandomValue(0, randomValue.length);
             board[i][j] = randomValue.splice(randomIndex, 1)[0];
         }
@@ -85,7 +85,7 @@ Sudoku.prototype.checkCell = function(cellRow, cellColumn){
     var columnCount = {};
     var squareCount = {};
 
-    for(var i=0; i<ROW_COUNT; i++){
+    for(var i=0; i<SUDOKU_SIDE; i++){
 
         var columnValue = board[i][cellColumn];
         var rowValue = board[cellRow][i];
