@@ -43,4 +43,5 @@ function isRowValid(row){
     return true;
 }
 
-module.exports = exports = checkRows;
+exports.check = checkRows;
+exports.isRowValid = isRowValid;

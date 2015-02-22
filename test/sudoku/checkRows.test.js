@@ -1,9 +1,9 @@
 var expect = require('chai').expect;
 var rewire = require("rewire");
 var sinon = require('sinon');
-var checkRow = rewire('../../js/checkRow');
+var checkRows = rewire('../../js/checkRows');
 
-describe('checkRow', function(){
+describe('checkRows', function(){
 
     it("should return true if all rows are valid", function(){
         var testBoard = [
@@ -18,13 +18,13 @@ describe('checkRow', function(){
             [0,0,0,0,0,0,0,0,0],
         ];
         var callCount = 0;
-        var revert = checkRow.__set__({
+        var revert = checkRows.__set__({
             isRowValid: function(){
                 callCount++;
                 return true;
             }
         });
-        var boardTest = checkRow(testBoard);
+        var boardTest = checkRows.check(testBoard);
         expect(boardTest).to.equal(true);
         expect(callCount).to.equal(9);
         revert();
@@ -43,20 +43,20 @@ describe('checkRow', function(){
             [0,0,0,0,0,0,0,0,0],
         ];
         var callCount = 0;
-        var revert = checkRow.__set__({
+        var revert = checkRows.__set__({
             isRowValid: function(){
                 callCount++;
                 return false;
             }
         });
-        var boardTest = checkRow(testBoard);
+        var boardTest = checkRows.check(testBoard);
         expect(boardTest).to.equal(false);
         expect(callCount).to.equal(1);
         revert();
     });
 
     describe('isRowValid', function(){
-        var isRowValid = checkRow.__get__("isRowValid");
+        var isRowValid = checkRows.__get__("isRowValid");
         it('Should return false if row has invalid number', function(){
             var testRow = [1,2,3,4,5,6,7,8,10];
             var rowTestResult;
