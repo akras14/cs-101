@@ -1,3 +1,4 @@
+"use strict";
 var Sudoku = require('./sudoku');
 var board = new Sudoku();
 

@@ -1,3 +1,4 @@
+"use strict";
 var checkRows = require('./checkRows');
 var checkColumns = require('./checkColumns');
 var checkSquares = require('./checkSquares');

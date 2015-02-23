@@ -10,7 +10,7 @@ gulp.task('default', function() {
     // place code for your default task here
 });
 
-gulp.task('lint', ['mocha'], function() {
+gulp.task('lint', function() {
     return gulp.src(['./js/**/*.js', './test/**/*.test.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
