@@ -1,6 +1,6 @@
 var checkRows = require('./checkRows');
 
-function checkSquare(board){
+function checkSquares(board){
   var validSquare, testRow;
   for(var i = 0; i < board.length; i++){
     testRow = convertSquareToRow(i, board);
@@ -25,4 +25,4 @@ function convertSquareToRow(i, board){
   }
   return row;
 }
-exports.check = checkSquare;
+exports.check = checkSquares;
