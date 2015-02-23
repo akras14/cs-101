@@ -1,9 +1,9 @@
 var expect = require('chai').expect;
 var rewire = require("rewire");
 var sinon = require('sinon');
-var checkColumn = rewire('../../../js/check-sudoku/checkSquare');
+var checkColumn = rewire('../../../js/check-sudoku/checkSquares');
 
-describe('checkSquare', function(){
+describe('checkSquares', function(){
 
     it("should convert a 3x3 square to a row, and call checkRow with it", function(){
         var callcount = 0;
