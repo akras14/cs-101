@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var runSequence = require('run-sequence');
 var jshint = require('gulp-jshint');
 var source = require('vinyl-source-stream');
 var streamify = require('gulp-streamify');
@@ -43,4 +44,6 @@ gulp.task('mocha', function () {
         .pipe(mocha({reporter: 'spec'}));
 });
 
-gulp.task('test', ['mocha', 'lint']);
+gulp.task('test', function(){
+    runSequence('mocha', 'lint');
+});
