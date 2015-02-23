@@ -1,8 +1,7 @@
 var expect = require('chai').expect;
 var rewire = require("rewire");
 var sinon = require('sinon');
-var Sudoku = rewire('../../js/sudoku');
-var getRandomValue = Sudoku.__get__('getRandomValue');
+var getRandomValue = rewire('../../../js/utils/getRandomValue');
 
 describe('getRandomValue', function(){
     it('Should return a random integer from including first to excluding second parameter', function(){
