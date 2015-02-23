@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
 var rewire = require("rewire");
 var sinon = require('sinon');
-var checkRows = rewire('../../js/checkRows');
+var checkRows = rewire('../../../js/check-sudoku/checkRows');
 
 describe('checkRows', function(){
 
