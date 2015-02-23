@@ -1,22 +1,22 @@
 var expect = require('chai').expect;
 var rewire = require("rewire");
 var sinon = require('sinon');
-var checkColumn = rewire('../../js/checkColumns');
+var checkColumn = rewire('../../js/checkSquare');
 
-describe('checkColumns', function(){
+describe('checkSquare', function(){
 
-    it("should convert a column to a row, and call checkRow with it", function(){
+    it("should convert a 3x3 square to a row, and call checkRow with it", function(){
         var callcount = 0;
         var testBoard = [
-            [1,2,3,4,5,6,7,8,9],
-            [1,2,3,4,5,6,7,8,9],
-            [1,2,3,4,5,6,7,8,9],
-            [1,2,3,4,5,6,7,8,9],
-            [1,2,3,4,5,6,7,8,9],
-            [1,2,3,4,5,6,7,8,9],
-            [1,2,3,4,5,6,7,8,9],
-            [1,2,3,4,5,6,7,8,9],
-            [1,2,3,4,5,6,7,8,9]
+            [1,1,1,2,2,2,3,3,3],
+            [1,1,1,2,2,2,3,3,3],
+            [1,1,1,2,2,2,3,3,3],
+            [4,4,4,5,5,5,6,6,6],
+            [4,4,4,5,5,5,6,6,6],
+            [4,4,4,5,5,5,6,6,6],
+            [7,7,7,8,8,8,9,9,9],
+            [7,7,7,8,8,8,9,9,9],
+            [7,7,7,8,8,8,9,9,9]
         ];
         var revert = checkColumn.__set__({
             checkRows: {
@@ -36,7 +36,7 @@ describe('checkColumns', function(){
         revert();
     });
 
-    it("should return true if all columns are valid", function(){
+    it("should return true if all squares are valid", function(){
         var testBoard = [
             [1,2,3,4,5,6,7,8,9],
             [4,5,6,7,8,9,1,2,3],
@@ -61,8 +61,8 @@ describe('checkColumns', function(){
             [5,6,7,8,9,1,2,3,4],
             [8,9,1,2,3,4,5,6,7],
             [3,4,5,6,7,8,9,1,2],
-            [9,7,8,9,1,2,3,4,5],// Two
-            [9,1,2,3,4,5,6,7,8] // 9s
+            [6,6,8,9,1,2,3,4,5], //Two 6s
+            [9,1,2,3,4,5,6,7,8]
         ];
         var testResult = checkColumn.check(testBoard);
         expect(testResult).to.equal(false);
