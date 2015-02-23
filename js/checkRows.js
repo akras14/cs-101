@@ -30,14 +30,16 @@ function isRowValid(row){
     for(var i=0; i<SUDOKU_SIDE; i++){
         var testValue = row[i];
 
-        if(!validValues[testValue]){ //Value is not valid
+        if(!validValues[testValue] && testValue !== 0){ //Value is not valid and not empty
             return false;
         }
 
         if(valueHit[testValue]){
             return false; //Should only hit each value once
         } else {
-            valueHit[testValue] = true; //Store the hit
+            if(testValue !== 0){
+                valueHit[testValue] = true; //Store the hit
+            }
         }
     }
     return true;

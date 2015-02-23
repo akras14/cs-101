@@ -3,7 +3,7 @@ var rewire = require("rewire");
 var sinon = require('sinon');
 var checkColumn = rewire('../../js/checkColumns');
 
-describe('checkRow', function(){
+describe('checkColumns', function(){
 
     it("should convert a column to a row, and call checkRow with it", function(){
         var callcount = 0;
@@ -31,7 +31,6 @@ describe('checkRow', function(){
                 }
             }
         });
-        debugger;
         checkColumn.check(testBoard);
         expect(callcount).to.equal(9);
         revert();
@@ -54,6 +53,18 @@ describe('checkRow', function(){
     });
 
     it("should return false if any of the columns is invalid", function(){
-
+        var testBoard = [
+            [1,2,3,4,5,6,7,8,9],
+            [2,3,4,5,6,7,8,9,1],
+            [3,4,5,6,7,8,9,1,2],
+            [4,5,6,7,8,9,1,2,3],
+            [5,6,7,8,9,1,2,3,4],
+            [6,7,8,9,1,2,3,4,5],
+            [7,8,9,1,2,3,4,5,6],
+            [8,9,1,2,3,4,5,6,7],
+            [9,1,2,3,4,5,6,7,9]//Two 9s
+        ];
+        var testResult = checkColumn.check(testBoard);
+        expect(testResult).to.equal(false);
     });
 });

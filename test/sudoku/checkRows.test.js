@@ -79,6 +79,18 @@ describe('checkRows', function(){
             }
         });
 
+        it('Should treat 0 as a valid entery, representing empty space', function(){
+            var testRow = [1,2,3,4,5,6,7,8,0];
+            var rowTestResult;
+
+            for(var i = 0; i < testRow.length; i ++) {
+                rowTestResult = isRowValid(testRow);
+                expect(rowTestResult).to.equal(true);
+
+                testRow.push(testRow.shift()); //Rotate the array
+            }
+        });
+
         it('Should return true if row is invalid', function(){
             var testRow = [1,2,3,4,5,6,7,8,9];
             var rowTestResult;

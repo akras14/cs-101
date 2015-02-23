@@ -10,8 +10,8 @@ gulp.task('default', function() {
     // place code for your default task here
 });
 
-gulp.task('lint', function() {
-    return gulp.src('./js/**/*.js')
+gulp.task('lint', ['mocha'], function() {
+    return gulp.src(['./js/**/*.js', './test/**/*.test.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
 });
@@ -43,4 +43,4 @@ gulp.task('mocha', function () {
         .pipe(mocha({reporter: 'spec'}));
 });
 
-gulp.task('test', ['lint', 'mocha']);
+gulp.task('test', ['mocha', 'lint']);
