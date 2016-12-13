@@ -7,7 +7,7 @@ def count_inversions(arr):
     rightArr, rightCount = count_inversions(arr[middle:])
     
     mergedArr, mergeCount = merge_and_count(leftArr, rightArr)
-    
+
     invCount += leftCount + rightCount + mergeCount
     return (mergedArr, invCount)
 
@@ -20,11 +20,10 @@ def merge_and_count(leftArr, rightArr):
         elif len(rightArr) == 0:
             mergedArr.append(leftArr.pop(0))
         elif leftArr[0] > rightArr[0]:
-            invCount += 1
+            invCount += len(leftArr)
             mergedArr.append(rightArr.pop(0))
         elif rightArr[0] > leftArr[0]:
             mergedArr.append(leftArr.pop(0))
         else:
-            mergedArr.append(leftArr.pop(0))
-            mergedArr.append(rightArr.pop(0))
+            raise ValueError("All inputs are expected to be unique")
     return (mergedArr, invCount)

@@ -1,26 +1,26 @@
 from inversions import count_inversions as ci
 
 testCases = [
-#    {
-#        'input': [],
-#        'output': [],
-#        'result': 0
-#    },
-#    {
-#        'input': [1],
-#        'output': [1],
-#        'result': 0
-#    },
-#    {
-#        'input': [1, 2],
-#        'output': [1, 2],
-#        'result': 0
-#    },
-#    {
-#        'input': [2, 1],
-#        'output': [1, 2],
-#        'result': 1
-#    },
+    {
+        'input': [],
+        'output': [],
+        'result': 0
+    },
+    {
+        'input': [1],
+        'output': [1],
+        'result': 0
+    },
+    {
+        'input': [1, 2],
+        'output': [1, 2],
+        'result': 0
+    },
+    {
+        'input': [2, 1],
+        'output': [1, 2],
+        'result': 1
+    },
     {
         'input': [3, 2, 1],
         'output': [1, 2, 3],
