@@ -2,10 +2,6 @@
 
 def sort(arr, l=None, r=None):
     """Sort Array"""
-    # print
-    # print "in sort"
-    # print "l is " + str(l)
-    # print "r is " + str(r)
 
     # Init l and r, if not provided
     if l is None:
@@ -17,19 +13,20 @@ def sort(arr, l=None, r=None):
     if l >= r: # Length equal 1
         return
 
-    p = l # First element
+    p = getP(arr, l, r)
 
-    p = partition(arr, l, r)
-    # print "partition is done"
-    # print arr
+    p = partition(arr, p, r)
+    print "partition is done"
+    print arr
 
-    # print "recursing on"
-
-    # print "l is " + str(l)
-    # print "p is " + str(p)
-    # print "r is " + str(r)
+    print "First recursion"
+    print "l is " + str(l)
+    print "p is " + str(p)
 
     sort(arr, l, p)
+    print "Second recursion"
+    print "p + 1 is " + str(p + 1)
+    print "r is " + str(r)
     sort(arr, p + 1, r)
 
 def partition(arr, l, r):
@@ -57,3 +54,7 @@ def swap(arr, i, j):
     temp = arr[j]
     arr[j] = arr[i]
     arr[i] = temp
+
+def getP(arr, l, r):
+    return l # First element
+    # return r # Last element
