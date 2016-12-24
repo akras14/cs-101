@@ -9,7 +9,6 @@ def isEqual(arr1, arr2):
     if l1 != l2:
         return False
     for i in range(0, max(len(arr1), len(arr2))):
-        print i
         if arr1[i] != arr2[i]:
             return False
     return True
@@ -65,4 +64,23 @@ def testLargeArrayMixed():
     arr = [1, 4, 3, 5, 2]
     sort(arr)
     expectedArr = [1, 2, 3, 4, 5]
+    assert isEqual(arr, expectedArr)
+
+def testLargerArray():
+    """Test array of 10 items"""
+    arr = [7, 4, 9, 6, 3, 8, 1, 5, 2]
+    sort(arr)
+    expectedArr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    assert isEqual(arr, expectedArr)
+
+
+def testRandomLargeArray():
+    """Test quick sort random"""
+    arr = range(1, 100)
+    import random
+    random.shuffle(arr)
+    print arr
+    sort(arr)
+    print arr
+    expectedArr = range(1, 100)
     assert isEqual(arr, expectedArr)
