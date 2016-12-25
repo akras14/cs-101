@@ -1,6 +1,6 @@
 """ Quick Sort Implementation"""
 
-def sort(arr, l=None, r=None):
+def sort(arr, l=None, r=None, count=None):
     """Sort Array"""
 
     # Init l and r, if not provided
@@ -13,14 +13,16 @@ def sort(arr, l=None, r=None):
     if l >= r: # Length equal 1
         return
 
-    p = getP(arr, l, r)
+    if count is not None:
+        count["total"] += r - l
 
-    # Swap p with first element, so left to right partition would work for all pivot points
+    p = getP(arr, l, r)
     swap(arr, p, l)
+
     p = partition(arr, l, r)
 
-    sort(arr, l, p - 1)
-    sort(arr, p + 1, r)
+    sort(arr, l, p - 1, count)
+    sort(arr, p + 1, r, count)
 
 def partition(arr, l, r):
     """
@@ -49,21 +51,21 @@ def swap(arr, i, j):
     arr[i] = temp
 
 def getP(arr, l, r):
-    return l # First element
+    # return l # First element
     # return r # Last element
-    # return medianPivotPoint(arr, l, r)
+    return medianPivotPoint(arr, l, r)
 
 def medianPivotPoint(arr, l, r):
-    arrLength = len(arr)
+    arrLength = r - l + 1
     if arrLength < 3:
         return l
     left = arr[l]
     right = arr[r]
 
     if arrLength % 2 == 0: # Even
-        middleIndex = arrLength / 2 - 1
+        middleIndex = l + arrLength / 2 - 1
     else: # Odd
-        middleIndex = arrLength / 2
+        middleIndex = l + arrLength / 2
 
     middle = arr[middleIndex]
 
