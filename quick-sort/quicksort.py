@@ -51,3 +51,30 @@ def swap(arr, i, j):
 def getP(arr, l, r):
     return l # First element
     # return r # Last element
+    # return medianPivotPoint(arr, l, r)
+
+def medianPivotPoint(arr, l, r):
+    arrLength = len(arr)
+    if arrLength < 3:
+        return l
+    left = arr[l]
+    right = arr[r]
+
+    if arrLength % 2 == 0: # Even
+        middleIndex = arrLength / 2 - 1
+    else: # Odd
+        middleIndex = arrLength / 2
+
+    middle = arr[middleIndex]
+
+    maxVal = max(left, middle, right)
+    minVal = min(left, middle, right)
+
+    if left != maxVal and left != minVal:
+        return l
+    elif right != maxVal and right != minVal:
+        return r
+    elif middle != maxVal and middle != maxVal:
+        return middleIndex
+    else:
+        raise ValueError
