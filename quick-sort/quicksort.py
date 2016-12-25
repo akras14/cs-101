@@ -15,18 +15,11 @@ def sort(arr, l=None, r=None):
 
     p = getP(arr, l, r)
 
-    p = partition(arr, p, r)
-    print "partition is done"
-    print arr
+    # Swap p with first element, so left to right partition would work for all pivot points
+    swap(arr, p, l)
+    p = partition(arr, l, r)
 
-    print "First recursion"
-    print "l is " + str(l)
-    print "p is " + str(p)
-
-    sort(arr, l, p)
-    print "Second recursion"
-    print "p + 1 is " + str(p + 1)
-    print "r is " + str(r)
+    sort(arr, l, p - 1)
     sort(arr, p + 1, r)
 
 def partition(arr, l, r):
