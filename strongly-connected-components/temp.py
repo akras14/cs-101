@@ -10,6 +10,14 @@ data = {
     9: [3, 7]
 }
 
+
+t = 0 # Number of nodes process so far
+s = None # Current source node
+
+finish_time = {}
+leaders = {}
+visited = []
+
 def reverseGraph(graph):
     newGraph = {}
     for k,v in data.items():
@@ -21,11 +29,17 @@ def reverseGraph(graph):
     return newGraph
 
 
-t = 0 # Number of nodes process so far
-s = None # Current source node
-finish_time = {}
-leaders = {}
-visited = []
+def finTimeData(data, finish_time):
+    newGraph = {}
+    for k,v in data.items():
+        newK = finish_time[k]
+        newEdges = []
+        for edge in v:
+            newEdge = finish_time[edge]
+            newEdges.append(newEdge)
+        newGraph[newK] = newEdges
+    return newGraph
+
 def dfsLoop(graph):
     global s
     for i in range(len(data), 0, -1): # All nodes in reverse order
@@ -46,4 +60,11 @@ def dfs(graph, node):
 
 revData = reverseGraph(data)
 dfsLoop(revData)
-print finish_time
+
+finishTimeData = finTimeData(data, finish_time)
+
+# Second Pass
+visited = []
+dfsLoop(finishTimeData)
+print leaders
+
