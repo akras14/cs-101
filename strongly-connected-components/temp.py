@@ -66,5 +66,14 @@ finishTimeData = finTimeData(data, finish_time)
 # Second Pass
 visited = []
 dfsLoop(finishTimeData)
-print leaders
+
+lead = sorted(set(leaders.values()), reverse=True)
+print lead
+visited = []
+for l in lead:
+    t = 0
+    dfs(finishTimeData, l)
+    print l
+    print t
+    print "--"
 
