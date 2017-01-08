@@ -1,14 +1,14 @@
-# data = { # 6,3,2,1,0
-#     1: [4],
-#     2: [8],
-#     3: [6],
-#     4: [7],
-#     5: [2],
-#     6: [9],
-#     7: [1],
-#     8: [5, 6],
-#     9: [3, 7]
-# }
+data = { # 6,3,2,1,0
+    1: [4],
+    2: [8],
+    3: [6],
+    4: [7],
+    5: [2],
+    6: [9],
+    7: [1],
+    8: [5, 6],
+    9: [3, 7]
+}
 
 # data = {  # 3,3,2,0,0
 #     1: [ 2],
@@ -47,6 +47,16 @@
 #     12: [10]
 # }
 
+# data = {}
+# with open("data.txt") as f:
+#   for line in f:
+#     u, v = line.split()
+#     u = int(u)
+#     v = int(v)
+#     if u in data:
+#         data[u].append(v)
+#     else:
+#         data[u] = [v]
 
 t = 0 # Number of nodes process so far
 s = None # Current source node
@@ -81,6 +91,7 @@ def dfsLoop(graph):
     global s
     for i in range(len(data), 0, -1): # All nodes in reverse order
         if i not in visited:
+            print "Checking for " + str(i)
             s = i
             dfs(graph, i)
 
