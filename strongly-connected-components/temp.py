@@ -52,9 +52,10 @@ def dfs(graph, node):
     if node not in visited:
         visited.append(node)
         leaders[node] = s
-    for next in graph[node]:
-        if next not in visited:
-            dfs(graph, next)
+    if node in graph:
+        for next in graph[node]:
+            if next not in visited:
+                dfs(graph, next)
     t += 1
     finish_time[node] = t
 
