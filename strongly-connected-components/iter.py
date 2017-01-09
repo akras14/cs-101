@@ -96,17 +96,19 @@ def dfsLoop(graph):
             dfs(graph, i)
 
 def dfs(graph, node):
-    print node
     global t
     if node not in visited:
-        visited.append(node)
         leaders[node] = s
     if node in graph:
-        for next in graph[node]:
-            if next not in visited:
-                dfs(graph, next)
-    t += 1
-    finish_time[node] = t
+        stack = [node]
+        while len(stack) > 0:
+            next = stack.pop(0)
+            if next not in visited:                
+                print next
+                visited.append(next)
+                stack = stack + graph[next]
+                t += 1
+                finish_time[next] = t
 
 revData = reverseGraph(data)
 dfsLoop(revData)
