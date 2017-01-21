@@ -32,20 +32,20 @@ data = { # 6,3,2,1,0
 #     7: [8]
 # }
 
-# data = { # 6,3,2,1,0
-#     1: [2],
-#     2: [3,4,5],
-#     3: [6],
-#     4: [5,7],
-#     5: [2,6,7],
-#     6: [3,8],
-#     7: [8,10],
-#     8: [7],
-#     9: [7],
-#     10: [9,11],
-#     11: [12],
-#     12: [10]
-# }
+data = { # 6,3,2,1,0
+    1: [2],
+    2: [3,4,5],
+    3: [6],
+    4: [5,7],
+    5: [2,6,7],
+    6: [3,8],
+    7: [8,10],
+    8: [7],
+    9: [7],
+    10: [9,11],
+    11: [12],
+    12: [10]
+}
 
 # data = {}
 # with open("data.txt") as f:
@@ -97,20 +97,42 @@ def dfsLoop(graph):
 
 def dfs(graph, node):
     global t
+    finish_time_stack = []
+
     if node not in visited:
         leaders[node] = s
     if node in graph:
         stack = [node]
         while len(stack) > 0:
             next = stack.pop(0)
-            if next not in visited:                
+            if next not in visited:           
                 print next
                 visited.append(next)
-                stack = stack + graph[next]
-                t += 1
-                finish_time[next] = t
+
+                nextLen = 0
+                # Probably bug around this all visited logic
+                # Not terminating right
+                allNextVisited = True      
+                if next in graph:
+                    stack = graph[next] + stack
+                    nextLen = len(graph[next])
+                    for n in graph[next]:
+                        if n not in visited:
+                            allNextVisited = False
+
+                if nextLen == 0 or allNextVisited:
+                    t += 1
+                    finish_time[next] = t
+                else:
+                    finish_time_stack.append(next)
+        while len(finish_time_stack) > 0:
+            n = finish_time_stack.pop()
+            t += 1
+            finish_time[n] = t
+
 
 revData = reverseGraph(data)
+print revData
 dfsLoop(revData)
 print finish_time
 finishTimeData = finTimeData(data, finish_time)

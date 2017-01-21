@@ -32,20 +32,20 @@ data = { # 6,3,2,1,0
 #     7: [8]
 # }
 
-# data = { # 6,3,2,1,0
-#     1: [2],
-#     2: [3,4,5],
-#     3: [6],
-#     4: [5,7],
-#     5: [2,6,7],
-#     6: [3,8],
-#     7: [8,10],
-#     8: [7],
-#     9: [7],
-#     10: [9,11],
-#     11: [12],
-#     12: [10]
-# }
+data = { # 6,3,2,1,0
+    1: [2],
+    2: [3,4,5],
+    3: [6],
+    4: [5,7],
+    5: [2,6,7],
+    6: [3,8],
+    7: [8,10],
+    8: [7],
+    9: [7],
+    10: [9,11],
+    11: [12],
+    12: [10]
+}
 
 # data = {}
 # with open("data.txt") as f:
@@ -109,6 +109,7 @@ def dfs(graph, node):
     finish_time[node] = t
 
 revData = reverseGraph(data)
+print revData
 dfsLoop(revData)
 print finish_time
 finishTimeData = finTimeData(data, finish_time)
