@@ -95,6 +95,12 @@ def dfsLoop(graph):
             s = i
             dfs(graph, i)
 
+def allFinished(graph):
+    allNextVisited = True
+    for n in graph:
+        if n not in visited:
+            allNextVisited = False   
+    return allNextVisited 
 def dfs(graph, node):
     global t
     finish_time_stack = []
@@ -108,27 +114,29 @@ def dfs(graph, node):
             if next not in visited:           
                 print next
                 visited.append(next)
-
-                nextLen = 0
-                # Probably bug around this all visited logic
-                # Not terminating right
-                allNextVisited = True      
                 if next in graph:
                     stack = graph[next] + stack
-                    nextLen = len(graph[next])
-                    for n in graph[next]:
-                        if n not in visited:
-                            allNextVisited = False
-
-                if nextLen == 0 or allNextVisited:
+                
+                if next not in graph or allFinished(graph[next]):
                     t += 1
                     finish_time[next] = t
+                    if len(finish_time_stack) > 0:                
+                        last = finish_time_stack.pop()
+                    else:
+                        last = None
+                    print "last is " + str(last)
+                    while last and allFinished(graph[last]):
+                        t += 1
+                        finish_time[last] = t
+                        if len(finish_time_stack) > 0:
+                            last = finish_time_stack.pop()
+                        else:
+                            last = None
+                    if last:
+                        finish_time_stack.append(last)
                 else:
                     finish_time_stack.append(next)
-        while len(finish_time_stack) > 0:
-            n = finish_time_stack.pop()
-            t += 1
-            finish_time[n] = t
+            print finish_time_stack
 
 
 revData = reverseGraph(data)
