@@ -63,7 +63,7 @@ s = None # Current source node
 count = 0
 finish_time = {}
 leaders = {}
-visited = []
+visited = {}
 
 def reverseGraph(graph):
     newGraph = {}
@@ -117,7 +117,7 @@ def dfs(graph, node):
                 if count % 1000 == 0:
                     print count
                 # print next
-                visited.append(next)
+                visited[next] = True
                 if next in graph:
                     stack = graph[next] + stack
                 
@@ -150,11 +150,11 @@ dfsLoop(revData)
 finishTimeData = finTimeData(data, finish_time)
 
 # Second Pass
-visited = []
+visited = {}
 dfsLoop(finishTimeData)
 
 lead = sorted(set(leaders.values()), reverse=True)
-visited = []
+visited = {}
 scc = [0]*5
 for l in lead:
     t = 0

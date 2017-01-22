@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "iter.py", line 150, in <module>
+    finishTimeData = finTimeData(data, finish_time)
+  File "iter.py", line 85, in finTimeData
+    newEdge = finish_time[edge]
+KeyError: 768504
