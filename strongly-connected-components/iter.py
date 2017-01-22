@@ -60,7 +60,7 @@ data = { # 6,3,2,1,0
 
 t = 0 # Number of nodes process so far
 s = None # Current source node
-
+count = 0
 finish_time = {}
 leaders = {}
 visited = []
@@ -111,8 +111,12 @@ def dfs(graph, node):
         stack = [node]
         while len(stack) > 0:
             next = stack.pop(0)
-            if next not in visited:           
-                print next
+            if next not in visited:
+                global count
+                count += 1
+                if count % 1000 == 0:
+                    print count
+                # print next
                 visited.append(next)
                 if next in graph:
                     stack = graph[next] + stack
@@ -124,7 +128,7 @@ def dfs(graph, node):
                         last = finish_time_stack.pop()
                     else:
                         last = None
-                    print "last is " + str(last)
+                    # print "last is " + str(last)
                     while last and allFinished(graph[last]):
                         t += 1
                         finish_time[last] = t
@@ -136,13 +140,13 @@ def dfs(graph, node):
                         finish_time_stack.append(last)
                 else:
                     finish_time_stack.append(next)
-            print finish_time_stack
+            # print finish_time_stack
 
 
 revData = reverseGraph(data)
-print revData
+# print revData
 dfsLoop(revData)
-print finish_time
+# print finish_time
 finishTimeData = finTimeData(data, finish_time)
 
 # Second Pass
