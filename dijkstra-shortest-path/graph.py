@@ -21,7 +21,13 @@ class Graph(object):
             self.__add_node(to_node)
         self.edges[from_node].append((to_node, distance))
 
-    def show(self):
-        """Print nodes and edges"""
-        pprint(self.nodes)
-        pprint(self.edges)
+    def size(self):
+        """Return number of nodes in graph"""
+        return len(self.nodes)
+
+    def get_nodes(self):
+        return self.nodes
+
+    def get_edges(self, node):
+        """Get edges for node"""
+        return self.edges[node]
