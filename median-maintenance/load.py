@@ -22,8 +22,8 @@ def balance(left, right):
 
     return True
 
-FILENAME = "test.txt"
-# file = "median.txt"
+# FILENAME = "test.txt"
+FILENAME = "median.txt"
 
 data = []
 with open(FILENAME) as f:
@@ -34,16 +34,12 @@ with open(FILENAME) as f:
 median = None
 leftHeap = heap.Heap(heap.MAX)
 rightHeap = heap.Heap(heap.MIN)
-
+medianSum = 0
 for i, d in enumerate(data):
     if d < median:
         leftHeap.insert(d)
     else:
         rightHeap.insert(d)
-    # print "Left"
-    # leftHeap.show()
-    # print "Right"
-    # rightHeap.show()
 
     if shouldBalance(leftHeap, rightHeap):
         balance(leftHeap, rightHeap)
@@ -53,6 +49,8 @@ for i, d in enumerate(data):
     elif rightHeap.size() > leftHeap.size():
         median = rightHeap.top()
     else:
-        median = (leftHeap.top() + rightHeap.top()) / 2.0
+        median = leftHeap.top()
+    medianSum += median
 
-    print float(median)
+print medianSum
+print medianSum % 10000
