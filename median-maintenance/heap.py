@@ -20,6 +20,13 @@ class Heap(object):
         """Return id of left child"""
         return i*2 + 1
 
+    def top(self):
+        """Return value of first element in the Heap"""
+        if len(self.items) > 0:
+            return self.items[0]
+        else:
+            return None
+
     def insert(self, newVal):
         """Add new value to the Heap"""
 
