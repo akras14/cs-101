@@ -1,10 +1,10 @@
 """Find two sums count for distinct pair in specified file"""
 
-#source = 'data.txt'
-#test = range(-10000, 10001)
+source = 'data.txt'
+test = range(-10000, 10001)
 
-source = 'test.txt'
-test = [3,10]
+#source = 'test.txt'
+#test = [3,10]
 
 with open(source) as f:
     data = map(int, f.readlines())
@@ -15,7 +15,6 @@ for d in data:
 
 def findSum(target):
     """Find all two sums for target"""
-    count = 0
     seen = {}
     for val in data:
         needed = target - val
@@ -23,13 +22,14 @@ def findSum(target):
             pair = (val, needed)
             if pair not in seen:
                 seen[pair] = True
-                count += 1
-    return count
+                return True
+    return False
 
 
 total = 0
 for t in test:
-    total += findSum(t)
+    if findSum(t) == True:
+        total += 1
     if t % 100 == 0:
         print t
         print total
