@@ -3,8 +3,8 @@
 source = 'data.txt'
 test = range(-10000, 10001)
 
-#source = 'test.txt'
-#test = [3,10]
+source = 'test.txt'
+test = range(3,11)
 
 with open(source) as f:
     data = map(int, f.readlines())
