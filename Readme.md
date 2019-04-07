@@ -1,1 +1,2 @@
-Placeholder Repo for CS-101 and beyond
+# JavaScript-CS101
+CS 101 Algorithms Implemented in JavaScript
